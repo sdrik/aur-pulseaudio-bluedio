@@ -15,3 +15,10 @@ steps:
   - namcap PKGBUILD
   - makepkg -sci --noconfirm
   - namcap *.pkg.tar.xz
+- name: publish
+  image: plugins/github-release
+  settings:
+    api_key:
+      from_secret: github_token
+    files: '*.pkg.tar.xz'
+    draft: true
